@@ -8,20 +8,17 @@ defmodule Rpn do
   end
 
   def push(pid, :+) do
-    Agent.update(pid, fn(list) ->
-      [second | [first | tail]] = list
+    Agent.update(pid, fn([second | [first | tail]]) ->
       [first + second | tail]
     end)
   end
   def push(pid, :-) do
-    Agent.update(pid, fn(list) ->
-      [second | [first | tail]] = list
+    Agent.update(pid, fn([second | [first | tail]]) ->
       [first - second | tail]
     end)
   end
   def push(pid, :x) do
-    Agent.update(pid, fn(list) ->
-      [second | [first | tail]] = list
+    Agent.update(pid, fn([second | [first | tail]]) ->
       [first * second | tail]
     end)
   end
